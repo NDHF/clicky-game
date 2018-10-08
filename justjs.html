@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clicky Game with Just JS</title>
+    <!-- <link rel="icon" type="image/png" href="maiden"> -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <style>
+        img {
+            padding: 10px;
+        }
+
+        #container {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container"></div>
+
+    <button id="submitButton">SUBMIT</button>
+
+    <script>
+        var albums = [
+            "assets/images/pieceofmind.jpg",
+            "assets/images/numberofthebeast.jpg",
+            "assets/images/powerslave.jpg",
+            "assets/images/killers.jpg",
+            "assets/images/seventhsonofaseventhson.jpg",
+            "assets/images/finalfrontier.jpg",
+            "assets/images/fearofthedark.jpg",
+            "assets/images/danceofdeath.jpg",
+            "assets/images/bravenewworld.jpg",
+            "assets/images/bookofsouls.png",
+            "assets/images/matteroflifeanddeath.jpg",
+            "assets/images/ironmaiden.jpg",
+            "assets/images/somewhereintime.jpg",
+            "assets/images/realliveone.jpg",
+            "assets/images/realdeadone.jpg",
+            "assets/images/liveafterdeath.jpg",
+            "assets/images/maidenjapan.jpg"
+        ];
+
+        function shuffleImages(array, whatWasClicked) {
+                console.log(whatWasClicked);
+                let copyOfArray = array.slice(0);
+                let shuffledArray = [];
+                while (copyOfArray.length > 0) {
+                    let randomNumber = Math.floor(Math.random() * copyOfArray.length)
+                    shuffledArray.push(copyOfArray[randomNumber]);
+                    copyOfArray.splice(randomNumber, 1);
+                }
+                $("#container").html("");
+                for (let j = 0; j < shuffledArray.length; j++) {
+                    let image = $("<img>");
+                    image.attr("src", shuffledArray[j]);
+                    image.attr("id", "imgNumber" + j)
+                    $("#container").append(image);
+                }
+            } 
+
+        shuffleImages(albums);
+
+            $("img").on('click', function () {
+                shuffleImages(albums, $(this).attr("id"));
+            });
+    </script>
+
+
+</body>
+
+</html>
